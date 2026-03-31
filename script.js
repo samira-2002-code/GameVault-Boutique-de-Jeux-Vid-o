@@ -37,4 +37,12 @@ function renderGames(gameList) {
 
 // Basic initialization
 renderGames(games);
+
+// Filtrage en temps réel
+document.getElementById('searchInput').addEventListener('input', () => {
+  const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+  const filtered = games.filter((game) => game.title.toLowerCase().includes(searchTerm));
+  renderGames(filtered);
+});
+
 console.log('GameVault initialized');

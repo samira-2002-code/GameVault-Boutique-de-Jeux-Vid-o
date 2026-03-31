@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "CyberStrike",
+    "price": 29.99,
+    "genre": "Action",
+    "image": "https://images.unsplash.com/photo-1612368176505-3ff470c2f115?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": 2,
+    "title": "Dragon Saga",
+    "price": 45.50,
+    "genre": "RPG",
+    "image": "https://images.unsplash.com/photo-1578632097906-9f0afc2d0542?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": 3,
+    "title": "Space Frontier",
+    "price": 23.40,
+    "genre": "FPS",
+    "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": 4,
+    "title": "Rogue Legend",
+    "price": 39.00,
+    "genre": "RPG",
+    "image": "https://images.unsplash.com/photo-1585890474226-98aaf66a9a20?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": 5,
+    "title": "Neon Chase",
+    "price": 18.99,
+    "genre": "Action",
+    "image": "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": 6,
+    "title": "Battle Siege",
+    "price": 51.20,
+    "genre": "FPS",
+    "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
+  }
+]

@@ -81,6 +81,39 @@ function loadCartFromLocalStorage() {
   }
 }
 
+// Rendu du panier
+function renderCart() {
+  const cartContainer = document.getElementById('cartContainer');
+  cartContainer.innerHTML = '';
+
+  if (Object.keys(cart).length === 0) {
+    cartContainer.innerHTML = '<p class="text-slate-300">Le panier est vide.</p>';
+    document.getElementById('cartTotal').textContent = '0 €';
+    return;
+  }
+
+  let total = 0;
+
+  Object.values(cart).forEach((item) => {
+    const subTotal = item.game.price * item.quantity;
+    total += subTotal;
+
+    const cartItem = document.createElement('div');
+    cartItem.className = 'bg-slate-800 rounded-lg p-3 border border-slate-700 flex flex-col sm:flex-row justify-between gap-3 items-start';
+    cartItem.innerHTML = `
+      <div>
+        <h3 class="font-semibold">${item.game.title}</h3>
+        <p class="text-slate-300">Prix unitaire: ${item.game.price.toFixed(2)} €</p>
+        <p class="text-slate-300">Sous-total: ${subTotal.toFixed(2)} €</p>
+      </div>
+    `;
+
+    cartContainer.appendChild(cartItem);
+  });
+
+  document.getElementById('cartTotal').textContent = `${total.toFixed(2)} €`;
+}
+
 // Basic initialization
 renderGames(games);
 

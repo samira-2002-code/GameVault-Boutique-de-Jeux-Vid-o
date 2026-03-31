@@ -8,5 +8,32 @@ const games = [
   { id: 6, title: 'Battle Siege', price: 51.20, genre: 'FPS', image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80' }
 ];
 
+// Fonction de rendu des jeux
+function renderGames(gameList) {
+  const gamesGrid = document.getElementById('gamesGrid');
+  gamesGrid.innerHTML = '';
+
+  if (gameList.length === 0) {
+    gamesGrid.innerHTML = '<p class="text-slate-300">Aucun jeu trouvé.</p>';
+    return;
+  }
+
+  gameList.forEach((game) => {
+    const card = document.createElement('article');
+    card.className = 'card rounded-xl overflow-hidden border border-slate-700 bg-slate-800 shadow-md';
+
+    card.innerHTML = `
+      <img src="${game.image}" alt="${game.title}" class="w-full h-44" />
+      <div class="p-4">
+        <h3 class="text-xl font-semibold">${game.title}</h3>
+        <p class="text-slate-300">Genre: ${game.genre}</p>
+        <p class="mt-2 text-lg font-bold">${game.price.toFixed(2)} €</p>
+      </div>
+    `;
+
+    gamesGrid.appendChild(card);
+  });
+}
+
 // Basic initialization
 console.log('GameVault initialized');

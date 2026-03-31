@@ -106,12 +106,35 @@ function renderCart() {
         <p class="text-slate-300">Prix unitaire: ${item.game.price.toFixed(2)} €</p>
         <p class="text-slate-300">Sous-total: ${subTotal.toFixed(2)} €</p>
       </div>
+      <div class="flex items-center gap-2">
+        <button class="quantity-btn bg-slate-700 hover:bg-slate-600 px-2 py-1 rounded" data-action="decrease" data-id="${item.game.id}">-</button>
+        <span class="w-8 text-center">${item.quantity}</span>
+        <button class="quantity-btn bg-slate-700 hover:bg-slate-600 px-2 py-1 rounded" data-action="increase" data-id="${item.game.id}">+</button>
+      </div>
     `;
 
     cartContainer.appendChild(cartItem);
   });
 
   document.getElementById('cartTotal').textContent = `${total.toFixed(2)} €`;
+
+  // Evénements des boutons de quantité
+  document.querySelectorAll('.quantity-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = Number(btn.dataset.id);
+      const action = btn.dataset.action;
+      if (action === 'increase') {
+        cart[id].quantity += 1;
+      } else if (action === 'decrease') {
+        cart[id].quantity -= 1;
+        if (cart[id].quantity <= 0) {
+          delete cart[id];
+        }
+      }
+      saveCartToLocalStorage();
+      renderCart();
+    });
+  });
 }
 
 // Basic initialization

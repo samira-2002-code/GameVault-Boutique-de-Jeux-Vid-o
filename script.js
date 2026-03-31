@@ -8,6 +8,8 @@ const games = [
   { id: 6, title: 'Battle Siege', price: 51.20, genre: 'FPS', image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80' }
 ];
 
+let cart = {}; // panier sous forme d'objet { id: { game, quantity } }
+
 // Fonction de rendu des jeux
 function renderGames(gameList) {
   const gamesGrid = document.getElementById('gamesGrid');
@@ -44,6 +46,20 @@ function renderGames(gameList) {
       addToCart(gameId);
     });
   });
+}
+
+// Ajouter un jeu au panier
+function addToCart(gameId) {
+  const game = games.find((item) => item.id === gameId);
+  if (!game) return;
+
+  if (cart[gameId]) {
+    cart[gameId].quantity += 1;
+  } else {
+    cart[gameId] = { game, quantity: 1 };
+  }
+
+  console.log('Added to cart:', game.title);
 }
 
 // Basic initialization

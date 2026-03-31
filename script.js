@@ -41,8 +41,40 @@ renderGames(games);
 // Filtrage en temps réel
 document.getElementById('searchInput').addEventListener('input', () => {
   const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
-  const filtered = games.filter((game) => game.title.toLowerCase().includes(searchTerm));
-  renderGames(filtered);
+  const selectedCategory = document.querySelector('.category-btn.bg-indigo-500').dataset.category;
+  filterAndRenderGames(searchTerm, selectedCategory);
 });
+
+// Boutons de catégorie
+const categoryButtons = document.querySelectorAll('.category-btn');
+categoryButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    categoryButtons.forEach((b) => {
+      b.classList.remove('bg-indigo-500');
+      b.classList.add('bg-slate-700');
+    });
+    btn.classList.add('bg-indigo-500');
+    btn.classList.remove('bg-slate-700');
+
+    const selectedCategory = btn.dataset.category;
+    const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+    filterAndRenderGames(searchTerm, selectedCategory);
+  });
+});
+
+// Fonction pour filtrer et afficher
+function filterAndRenderGames(searchTerm, category) {
+  let filtered = games;
+
+  if (category && category !== 'Tous') {
+    filtered = filtered.filter((game) => game.genre.toLowerCase() === category.toLowerCase());
+  }
+
+  if (searchTerm) {
+    filtered = filtered.filter((game) => game.title.toLowerCase().includes(searchTerm));
+  }
+
+  renderGames(filtered);
+}
 
 console.log('GameVault initialized');

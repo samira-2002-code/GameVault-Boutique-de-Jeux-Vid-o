@@ -110,6 +110,7 @@ function renderCart() {
         <button class="quantity-btn bg-slate-700 hover:bg-slate-600 px-2 py-1 rounded" data-action="decrease" data-id="${item.game.id}">-</button>
         <span class="w-8 text-center">${item.quantity}</span>
         <button class="quantity-btn bg-slate-700 hover:bg-slate-600 px-2 py-1 rounded" data-action="increase" data-id="${item.game.id}">+</button>
+        <button class="remove-btn ml-2 bg-red-500 hover:bg-red-600 px-2 py-1 rounded" data-id="${item.game.id}">🗑</button>
       </div>
     `;
 
@@ -131,6 +132,15 @@ function renderCart() {
           delete cart[id];
         }
       }
+      saveCartToLocalStorage();
+      renderCart();
+    });
+  });
+
+  document.querySelectorAll('.remove-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = Number(btn.dataset.id);
+      delete cart[id];
       saveCartToLocalStorage();
       renderCart();
     });

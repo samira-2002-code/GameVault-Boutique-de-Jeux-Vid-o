@@ -36,4 +36,5 @@ function renderGames(gameList) {
 }
 
 // Basic initialization
+renderGames(games);
 console.log('GameVault initialized');

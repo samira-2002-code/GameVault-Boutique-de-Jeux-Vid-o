@@ -28,10 +28,21 @@ function renderGames(gameList) {
         <h3 class="text-xl font-semibold">${game.title}</h3>
         <p class="text-slate-300">Genre: ${game.genre}</p>
         <p class="mt-2 text-lg font-bold">${game.price.toFixed(2)} €</p>
+        <button class="mt-4 w-full py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-semibold add-cart-btn" data-id="${game.id}">
+          Ajouter au panier
+        </button>
       </div>
     `;
 
     gamesGrid.appendChild(card);
+  });
+
+  // Ajout des événements aux boutons du panier
+  document.querySelectorAll('.add-cart-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const gameId = Number(btn.dataset.id);
+      addToCart(gameId);
+    });
   });
 }
 

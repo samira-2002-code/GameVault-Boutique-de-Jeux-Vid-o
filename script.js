@@ -59,7 +59,26 @@ function addToCart(gameId) {
     cart[gameId] = { game, quantity: 1 };
   }
 
+  saveCartToLocalStorage();
   console.log('Added to cart:', game.title);
+}
+
+// LocalStorage - sauvegarde
+function saveCartToLocalStorage() {
+  localStorage.setItem('gamevault-cart', JSON.stringify(cart));
+}
+
+// LocalStorage - chargement
+function loadCartFromLocalStorage() {
+  const savedCart = localStorage.getItem('gamevault-cart');
+  if (savedCart) {
+    try {
+      cart = JSON.parse(savedCart);
+    } catch (error) {
+      console.error('Erreur lecture panier:', error);
+      cart = {};
+    }
+  }
 }
 
 // Basic initialization
